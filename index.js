@@ -3,6 +3,7 @@ const client = new Discord.Client()
 client.commands = new Discord.Collection()
 const fs = require('fs')
 let profile = require('./profile.json')
+let prefix = process.env.PREFIX
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
 fs.readdir('./cmds/', (err, files) => {
@@ -51,8 +52,8 @@ client.on("message", (message) => {
 	let messageArray = message.content.split(" ")
 	let command = messageArray[0].toLowerCase()
 	let args = messageArray.slice(1)
-	if (!message.content.startsWith(process.env.PREFIX)) return
-	let cmd = client.commands.get(command.slice(process.env.PREFIX.length))
+	if (!message.content.startsWith(prefix)) return
+	let cmd = client.commands.get(command.slice(prefix.length))
 	if (cmd) cmd.run(client, message, args)
 })
 
