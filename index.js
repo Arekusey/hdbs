@@ -3,7 +3,7 @@ const client = new Discord.Client()
 client.commands = new Discord.Collection()
 const fs = require('fs')
 let profile = require('./profile.json')
-let prefix = process.env.PREFIX
+let prefix = "-"
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
 fs.readdir('./cmds/', (err, files) => {
